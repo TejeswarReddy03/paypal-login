@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 4px;
+            padding: 20px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background-color: #0070ba;
+            color: white;
+            padding: 14px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .login-btn:hover {
+            background-color: #003087;
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .forgot-password a {
+            color: #0070ba;
+            text-decoration: none;
+        }
+        
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .separator span {
+            padding: 0 10px;
+            color: #999;
+        }
+        
+        .signup-btn {
+            width: 100%;
+            background-color: white;
+            color: #0070ba;
+            padding: 14px;
+            border: 1px solid #0070ba;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .signup-btn:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .footer a {
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .country-selector {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal Logo">
+        </div>
+        
+        <form id="loginForm">
+            <input type="text" placeholder="Email or mobile number" required>
+            <input type="password" placeholder="Password" required>
+            
+            <div class="forgot-password">
+                <a href="#">Forgotten password?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        
+        <div class="separator">
+            <span>or</span>
+        </div>
+        
+        <button class="signup-btn">Sign Up</button>
+        
+        <div class="country-selector">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_76x48.png" height="24" alt="Country Flag">
+        </div>
+        
+        <div class="footer">
+            <a href="#">Contact Us</a>
+            <a href="#">Privacy</a>
+            <a href="#">Legal</a>
+            <a href="#">Worldwide</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'https://www.paypal.com';
+        });
+        
+        document.querySelector('.signup-btn').addEventListener('click', function() {
+            window.location.href = 'https://www.paypal.com/signup';
+        });
+    </script>
+</body>
+</html>
